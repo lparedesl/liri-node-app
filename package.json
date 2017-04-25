@@ -1,0 +1,26 @@
+{
+  "name": "liri",
+  "version": "1.0.0",
+  "description": "Language interpretation recognition interface.",
+  "main": "liri.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lparedesl/liri-node-app.git"
+  },
+  "author": "Luis Paredes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lparedesl/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/lparedesl/liri-node-app#readme",
+  "dependencies": {
+    "inquirer": "*",
+    "open": "*",
+    "request": "*",
+    "spotify": "*",
+    "twitter": "*"
+  }
+}
