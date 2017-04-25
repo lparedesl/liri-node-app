@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/lparedesl/liri-node-app#readme",
   "dependencies": {
+    "fs": "*",
     "inquirer": "*",
     "open": "*",
     "request": "*",
