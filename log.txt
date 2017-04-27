@@ -311,3 +311,52 @@ Tue Apr 25 21:06:10
 @EmreMeinMan:
 RT @AntiBullyDude: Messi: "I dedicated my celebration to the shirt. Not the Barcelona shirt, but all shirts. Imagine the world without shir…
 Tue Apr 25 21:06:10
+command: Do what it says
+
+Title: The Lord of the Rings: The Fellowship of the Ring
+Year: 2001
+Country: New Zealand, USA
+Language: English, Sindarin
+Plot: A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle Earth from the Dark Lord Sauron.
+Actors: Alan Howard, Noel Appleby, Sean Astin, Sala Baker
+Internet Movie Database Rating: 8.8/10
+Rotten Tomatoes Rating: 91%
+IMDB URL: http://www.imdb.com/title/tt0120737
+
+command: Spotify
+
+Track: Lumbra
+Artist: Cali Y El Dandee
+Album: Lumbra
+Duration: 3:17 min
+Popularity: 74
+URI: spotify:track:7dx0Funwrd0LRvquDFQ8fv
+
+command: Spotify
+
+Artist: Oasis
+Genres: alternative rock, britpop, indie rock, neo mellow, permanent wave, pop rock, rock
+Popularity: 76
+URI: spotify:artist:2DaxqgrOhkeH0fpeiQq2f4
+command: Movies
+
+Title: Batman
+Year: 1989
+Country: USA, UK
+Language: English, French
+Plot: The Dark Knight of Gotham City begins his war on crime with his first major enemy being the clownishly homicidal Joker.
+Actors: Michael Keaton, Jack Nicholson, Kim Basinger, Robert Wuhl
+Internet Movie Database Rating: 7.6/10
+Rotten Tomatoes Rating: 72%
+IMDB URL: http://www.imdb.com/title/tt0096895
+command: Do what it says
+
+Title: The Lord of the Rings: The Fellowship of the Ring
+Year: 2001
+Country: New Zealand, USA
+Language: English, Sindarin
+Plot: A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle Earth from the Dark Lord Sauron.
+Actors: Alan Howard, Noel Appleby, Sean Astin, Sala Baker
+Internet Movie Database Rating: 8.8/10
+Rotten Tomatoes Rating: 91%
+IMDB URL: http://www.imdb.com/title/tt0120737

@@ -39,32 +39,32 @@ function spotifyThis(type, query) {
 	}, function(error, data) {
 	    if(error) throw error;
 	    var externalUrl = data[type + "s"].items[0].external_urls.spotify;
-	    dataResponse = type.capitalizeFirstLetter() + ": " + data[type + "s"].items[0].name + "\n";
+	    dataResponse = type.capitalizeFirstLetter() + ": " + data[type + "s"].items[0].name;
 	    switch(type) {
 	    	case "track":
 		    	var durationMin = Math.floor(data.tracks.items[0].duration_ms / 60000);
 		    	var durationSec = Math.floor(data.tracks.items[0].duration_ms / 1000 % 60);
-		    	dataResponse += "Artist: " + data.tracks.items[0].artists[0].name + "\n" +
-					    	   "Album: " + data.tracks.items[0].album.name + "\n" +
-					    	   "Duration: " + durationMin + ":" + durationSec + " min\n" +
-					    	   "Popularity: " + data.tracks.items[0].popularity + "\n";
+		    	dataResponse += "\nArtist: " + data.tracks.items[0].artists[0].name +
+					    	   "\nAlbum: " + data.tracks.items[0].album.name +
+					    	   "\nDuration: " + durationMin + ":" + durationSec +
+					    	   " min\nPopularity: " + data.tracks.items[0].popularity;
 	    		break;
 
 	    	case "artist":
-    		    var genres = "Genres: ";
+    		    var genres = "\nGenres: ";
     		    for (var j = 0; j < data.artists.items[0].genres.length; j++) {
     		    	genres += data.artists.items[0].genres[j] + ", ";
     		    }
     		    genres = genres.substring(0, genres.length-2);
-    		    dataResponse += genres + "\n" +
-    		    				"Popularity: " + data.artists.items[0].popularity + "\n";
+    		    dataResponse += genres +
+    		    				"\nPopularity: " + data.artists.items[0].popularity;
 	    		break;
 
 	    	case "album":
-	    		dataResponse += "Artist: " + data.albums.items[0].artists[0].name + "\n";
+	    		dataResponse += "\nArtist: " + data.albums.items[0].artists[0].name;
 	    		break;
 	    }
-	    dataResponse += "URI: " + data[type + "s"].items[0].uri;
+	    dataResponse += "\nURI: " + data[type + "s"].items[0].uri;
 	    console.log(dataResponse);
 	    console.log("");
 	    fs.appendFileSync("log.txt", "\ncommand: " + choice + "\n\n" + dataResponse + "\n");
@@ -84,25 +84,23 @@ function spotifyThis(type, query) {
 }
 
 function movieThis(movieName) {
-	var queryUrl = "";
-
 	if (movieName === "") {
-		queryUrl = "http://www.omdbapi.com/?t=mr.nobody&y=&plot=short&r=json";
-	} else {
-		queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&r=json";
+		movieName = "mr.nobody";
 	}
+
+	var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&r=json";
 
 	request(queryUrl, function(error, response, body) {
 		if (!error && response.statusCode === 200) {
-			dataResponse = "Title: " + JSON.parse(body).Title + "\n" +
-						   "Year: " + JSON.parse(body).Year + "\n" +
-						   "Country: " + JSON.parse(body).Country + "\n" +
-						   "Language: " + JSON.parse(body).Language + "\n" +
-						   "Plot: " + JSON.parse(body).Plot + "\n" +
-						   "Actors: " + JSON.parse(body).Actors + "\n" +
+			dataResponse = "Title: " + JSON.parse(body).Title +
+						   "\nYear: " + JSON.parse(body).Year +
+						   "\nCountry: " + JSON.parse(body).Country +
+						   "\nLanguage: " + JSON.parse(body).Language +
+						   "\nPlot: " + JSON.parse(body).Plot +
+						   "\nActors: " + JSON.parse(body).Actors + "\n" +
 						   JSON.parse(body).Ratings[0].Source + " Rating: " + JSON.parse(body).Ratings[0].Value + "\n" +
-						   JSON.parse(body).Ratings[1].Source + " Rating: " + JSON.parse(body).Ratings[1].Value + "\n" +
-						   "IMDB URL: " + "http://www.imdb.com/title/" + JSON.parse(body).imdbID;
+						   JSON.parse(body).Ratings[1].Source + " Rating: " + JSON.parse(body).Ratings[1].Value +
+						   "\nIMDB URL: " + "http://www.imdb.com/title/" + JSON.parse(body).imdbID;
 			console.log(dataResponse);
 			console.log("");
 			fs.appendFileSync("log.txt", "command: " + choice + "\n\n" + dataResponse + "\n");
@@ -193,5 +191,4 @@ inquirer.prompt([
 			});
 			break;
 	}
-	// fs.appendFileSync("log.txt", "\ncommand: " + choice + "\n\n" + dataResponse + "\n");
 });
