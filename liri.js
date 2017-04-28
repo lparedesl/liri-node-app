@@ -20,13 +20,13 @@ function showTweets(query) {
 	}, function(error, tweets, response) {
 		if(error) throw error;
 		for (var i = 0; i < tweets.statuses.length; i++) {
-			dataResponse += "\n\n" + "@" +
+			dataResponse += "\n\n@" +
 						   tweets.statuses[i].user.screen_name + ":\n" +
 						   tweets.statuses[i].text + "\n" +
 						   tweets.statuses[i].created_at.split(" +")[0];
 		}
 		console.log(dataResponse);
-		fs.appendFileSync("log.txt", "\ncommand: " + choice + "\n\n" + dataResponse + "\n");
+		fs.appendFileSync("log.txt", "\n\ncommand: " + choice + "\n\n" + dataResponse);
 	});
 }
 
@@ -67,7 +67,7 @@ function spotifyThis(type, query) {
 	    dataResponse += "\nURI: " + data[type + "s"].items[0].uri;
 	    console.log(dataResponse);
 	    console.log("");
-	    fs.appendFileSync("log.txt", "\ncommand: " + choice + "\n\n" + dataResponse + "\n");
+	    fs.appendFileSync("log.txt", "\n\ncommand: " + choice + "\n\n" + dataResponse);
         inquirer.prompt([
     	{
     		type: "confirm",
@@ -103,7 +103,7 @@ function movieThis(movieName) {
 						   "\nIMDB URL: " + "http://www.imdb.com/title/" + JSON.parse(body).imdbID;
 			console.log(dataResponse);
 			console.log("");
-			fs.appendFileSync("log.txt", "command: " + choice + "\n\n" + dataResponse + "\n");
+			fs.appendFileSync("log.txt", "\n\ncommand: " + choice + "\n\n" + dataResponse);
 		inquirer.prompt([
 		{
 			type: "confirm",
