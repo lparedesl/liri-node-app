@@ -3,8 +3,9 @@ var fs = require("fs");
 var request = require("request");
 var inquirer = require('inquirer');
 var open = require('open');
-var twitter = require('twitter');
-var spotify = require('spotify');
+var Twitter = require('twitter');
+var Spotify = require('node-spotify-api');
+var imdb = require('imdb-api');
 var choice = "";
 var dataResponse = "";
 
@@ -13,10 +14,10 @@ String.prototype.capitalizeFirstLetter = function() {
 };
 
 function showTweets(query) {
-	var client = new twitter(keys.twitterKeys);
-	client.get("search/tweets", {
+	var twitter = new Twitter(keys.twitterKeys);
+	twitter.get("search/tweets", {
 		q: query,
-		count: 20,
+		count: 20
 	}, function(error, tweets, response) {
 		if(error) throw error;
 		for (var i = 0; i < tweets.statuses.length; i++) {
@@ -31,11 +32,12 @@ function showTweets(query) {
 }
 
 function spotifyThis(type, query) {
+    var spotify = new Spotify(keys.spotifyKeys);
 	console.log("searching for " + query);
 	console.log("");
 	spotify.search({
 		type: type,
-		query: query,
+		query: query
 	}, function(error, data) {
 	    if(error) throw error;
 	    var externalUrl = data[type + "s"].items[0].external_urls.spotify;
@@ -84,13 +86,14 @@ function spotifyThis(type, query) {
 }
 
 function movieThis(movieName) {
-	if (movieName === "") {
+	if (!movieName) {
 		movieName = "mr.nobody";
 	}
 
-	var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&r=json";
+	var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&r=json&apikey=6506dddc";
 
 	request(queryUrl, function(error, response, body) {
+        console.log(JSON.parse(body));
 		if (!error && response.statusCode === 200) {
 			dataResponse = "Title: " + JSON.parse(body).Title +
 						   "\nYear: " + JSON.parse(body).Year +
@@ -136,8 +139,9 @@ inquirer.prompt([
 					type: "input",
 					message: "What do you want to search for?",
 					name: "query"
-				},
-			]).then(function(data) {
+				}
+			])
+            .then(function(data) {
 				showTweets(data.query);
 			});
 			break;
@@ -154,8 +158,9 @@ inquirer.prompt([
 					type: "input",
 					message: "What do you want to listen to?",
 					name: "query"
-				},
-			]).then(function(data) {
+				}
+			])
+            .then(function(data) {
 				spotifyThis(data.type, data.query);
 			});
 			break;
@@ -166,8 +171,9 @@ inquirer.prompt([
 			    type: "input",
 			    message: "What movie do you want to search?",
 			    name: "query"
-			  },
-			]).then(function(data) {
+			  }
+			])
+            .then(function(data) {
 				movieThis(data.query);
 			});
 			break;
